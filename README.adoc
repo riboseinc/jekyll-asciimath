@@ -1,0 +1,100 @@
+= AsciiMath plugin for Jekyll
+
+== `asciimath` filter
+
+When applied to a variable, replaces AsciiMath markup between specified delimiters
+with HTML.
+
+For example, Liquid markup like this:
+
+[source,liquid]
+--
+{% assign some_variable = "$$m$$ out of $$n$$ redundancy" %}
+{{ some_variable | asciimath }}
+--
+
+would be rendered into this
+(but without whitespace, which is added for legibility):
+
+[source,html]
+--
+<span class="math-inline">
+  <span class="math-row">
+    <span class="math-identifier">m</span>
+  </span>
+</span>
+
+out of
+
+<span class="math-inline">
+  <span class="math-row">
+    <span class="math-identifier">n</span>
+  </span>
+</span>
+
+redundancy
+--
+
+== How it works
+
+This plugin uses https://github.com/asciidoctor/asciimath for converting AsciiMath into HTML,
+and a crude regular expression for extracting AsciiMath markup from a mass of text
+based on delimiters.
+
+== Configuration
+
+The plugin will work without any site configuration keys,
+but it requires you to include AsciiMath styling CSS in your template
+and to pay attention to the default delimiter setting (see below).
+
+=== Delimiter
+
+Currently, only one delimiter is supported
+(i.e., opening delimiter must be the same as trailing delimiter).
+
+Configure the delimiter for use with `asciimath` filters in your site config
+as follows:
+
+[source,yaml]
+--
+asciimath_delimiter: $$
+--
+
+The default delimiter is `$$`.
+
+NOTE: Delimiter will be passed to Ruby’s `Regexp.quote()`,
+so there’s no need to quote special characters.
+
+=== Styling
+
+For the HTML output of `asciimath` filter to be rendered correctly,
+you have to include the relevant CSS.
+
+The plugin automatically copies the CSS file from the `asciimath` gem
+distribution into the assets directory of your site output.
+
+To change the path to CSS, specify the `asciimath_css_dir` option:
+
+[source,yaml]
+--
+asciimath_css_path: assets/math.css
+--
+
+To disable this behavior, set that variable to empty string.
+
+The default path is `assets/math.css`.
+
+[IMPORTANT]
+====
+The plugin will only copy the CSS file, but it will not
+include it your website’s source.
+Add the relevant `<link>` in your template like this:
+
+[source,html]
+--
+<head>
+  <!-- ...other markup... -->
+  <link href="{{ "/assets/math.css" | relative_url }}" />
+</head>
+--
+====
