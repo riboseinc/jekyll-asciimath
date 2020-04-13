@@ -3,7 +3,7 @@
 == `asciimath` filter
 
 When applied to a variable, replaces AsciiMath markup between specified delimiters
-with HTML.
+with MathML or HTML.
 
 For example, Liquid markup like this:
 
@@ -15,6 +15,25 @@ For example, Liquid markup like this:
 
 would be rendered into this
 (but without whitespace, which is added for legibility):
+
+MathML:
+
+[source,html]
+--
+<math>
+  <mi>m</mi>
+</math>
+
+out of
+
+<math>
+  <mi>n</mi>
+</math>
+
+redundancy
+--
+
+HTML:
 
 [source,html]
 --
@@ -37,7 +56,8 @@ redundancy
 
 == How it works
 
-This plugin uses https://github.com/asciidoctor/asciimath for converting AsciiMath into HTML,
+This plugin uses https://github.com/asciidoctor/asciimath for converting AsciiMath
+into MathML and HTML,
 and a crude regular expression for extracting AsciiMath markup from a mass of text
 based on delimiters.
 
@@ -46,6 +66,25 @@ based on delimiters.
 The plugin will work without any site configuration keys,
 but it requires you to include AsciiMath styling CSS in your template
 and to pay attention to the default delimiter setting (see below).
+
+=== Output format
+
+Depending on the browsers you intend to support, you may choose
+MathML or HTML as the output format. Native MathML support is available
+for most browsers, except MSIE.
+
+Configure the delimiter for use with `asciimath` filters in your site config
+as follows:
+
+[source,yaml]
+--
+asciimath_output_format: mathml
+--
+
+Valid choices: `mathml` (default), `html`.
+
+For best rendering results, choose `mathml`.
+
 
 === Delimiter
 

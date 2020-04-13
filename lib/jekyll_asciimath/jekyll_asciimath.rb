@@ -13,25 +13,29 @@ end
 
 module Jekyll::AsciiMathFilter
   def asciimath(input)
-    delimiter = @context.registers[:site].config['asciimath_delimiter'] || '$$'
+    site_config = @context.registers[:site].config
+
+    delimiter = site_config['asciimath_delimiter'] || '$$'
+    output_format = site_config['asciimath_output_format']
+    output_format = 'mathml' unless %w(html mathml).include?(output_format)
+
     delim_regex = Regexp.quote(delimiter)
     asciimath_regex = Regexp.new("(?<=#{delim_regex})[^#{delim_regex}]+(?=#{delim_regex})")
 
-    if input.scan(asciimath_regex).size > 0
-      pieces = "#{delimiter} #{input} #{delimiter}".scan(asciimath_regex)
-      parsed_pieces = []
+    return input if input.scan(asciimath_regex).size == 0
 
-      pieces.each_with_index { |piece, idx|
-        if idx.odd?
-          parsed_pieces << AsciiMath.parse(piece).to_html
-        elsif piece != ' '
-          parsed_pieces << piece
-        end
-      }
-      return parsed_pieces.join('')
-    else
-      return input
-    end
+    pieces = "#{delimiter} #{input} #{delimiter}".scan(asciimath_regex)
+    parsed_pieces = []
+
+    pieces.each_with_index { |piece, idx|
+      if idx.odd?
+        parsed_pieces << AsciiMath.parse(piece).send("to_#{output_format}")
+      elsif piece != ' '
+        parsed_pieces << piece
+      end
+    }
+
+    parsed_pieces.join('')
   end
 end
 
