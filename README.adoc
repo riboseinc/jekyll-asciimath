@@ -85,8 +85,11 @@ asciimath_output_format: mathml
 
 Valid choices: `mathml` (default), `html`.
 
-For best rendering results, choose `mathml`.
+NOTE: MathML rendering depends on browser’s support of MathML.
 
+NOTE: HTML output works across wider range of browsers,
+but requires the inclusion of a CSS file
+(see the relevant section in this document).
 
 === Delimiter
 
