@@ -1,5 +1,8 @@
 = AsciiMath plugin for Jekyll
 
+Useful when you want to render AsciiMath markup at build time,
+rather than using client-side JS processing.
+
 IMPORTANT: This plugin uses https://github.com/asciidoctor/asciimath,
 which as of now does not support all features of AsciiMath.
 Certain advanced math symbols may not be rendered correctly.
