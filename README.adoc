@@ -84,7 +84,7 @@ asciimath_output_format: mathml
 
 Valid choices: `mathml` (default), `html`.
 
-NOTE: MathML rendering depends on browser’s support of MathML.
+NOTE: MathML rendering depends on your user agent’s support of MathML.
 
 NOTE: HTML output works across wider range of browsers,
 but requires the inclusion of a CSS file
