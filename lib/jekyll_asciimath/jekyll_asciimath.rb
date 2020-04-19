@@ -5,9 +5,14 @@ $ASCIIMATH_CSS = File.join(Gem::Specification.find_by_name("asciimath").gem_dir,
 
 
 Jekyll::Hooks.register :site, :post_write do |site|
-  site_asciimath_css_path = site.config['asciimath_css_path'] || 'assets/math.css'
-  target = File.join(site.config['destination'] || '_site', site_asciimath_css_path)
-  system("cp #{$ASCIIMATH_CSS} #{target}")
+  output_format = site.config['asciimath_output_format']
+  output_format = 'mathml' unless %w(html mathml).include?(output_format)
+  requires_css = output_format == 'html'
+  if requires_css
+    site_asciimath_css_path = site.config['asciimath_css_path'] || 'assets/math.css'
+    target = File.join(site.config['destination'] || '_site', site_asciimath_css_path)
+    system("cp #{$ASCIIMATH_CSS} #{target}")
+  end
 end
 
 
