@@ -13,10 +13,8 @@ For example, Liquid markup like this:
 {{ some_variable | asciimath }}
 --
 
-would be rendered into this
-(but without whitespace, which is added for legibility):
-
-MathML:
+…would be rendered into the following MathML
+(whitespace in rendering examples is added for legibility):
 
 [source,html]
 --
@@ -33,7 +31,7 @@ out of
 redundancy
 --
 
-HTML:
+…or following HTML:
 
 [source,html]
 --
