@@ -75,11 +75,7 @@ and to pay attention to the default delimiter setting (see below).
 === Output format
 
 Depending on the browsers you intend to support, you may choose
-MathML or HTML as the output format. Native MathML support is available
-for most browsers, except MSIE.
-
-Configure the delimiter for use with `asciimath` filters in your site config
-as follows:
+MathML or HTML as the output format.
 
 [source,yaml]
 --
