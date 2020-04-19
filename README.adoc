@@ -1,5 +1,9 @@
 = AsciiMath plugin for Jekyll
 
+IMPORTANT: This plugin uses https://github.com/asciidoctor/asciimath,
+which as of now does not support all features of AsciiMath.
+Certain advanced math symbols may not be rendered correctly.
+
 == `asciimath` filter
 
 When applied to a variable, replaces AsciiMath markup between specified delimiters
