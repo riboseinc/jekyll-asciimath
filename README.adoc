@@ -106,6 +106,9 @@ asciimath_delimiter: $$
 
 The default delimiter is `$$`.
 
+NOTE: If you have jekyll-asciidoc gem process `stem:` markup in your sources,
+you may want to keep in mind that its output will use `\$` as delimiter.
+
 NOTE: Delimiter will be passed to Ruby’s `Regexp.quote()`,
 so there’s no need to quote special characters.
 
