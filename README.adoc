@@ -68,9 +68,9 @@ based on delimiters.
 
 == Configuration
 
-The plugin will work without any site configuration keys,
-but it requires you to include AsciiMath styling CSS in your template
-and to pay attention to the default delimiter setting (see below).
+The plugin will work without any extra configuration, but you should
+keep in mind that it uses MathML output by default (subject to browser support)
+and pay attention to the delimiter setting (see below).
 
 === Output format
 
