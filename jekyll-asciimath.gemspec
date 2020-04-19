@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'jekyll-asciimath'
-  s.version       = '1.0.0'
+  s.version       = '1.1.0'
   s.authors       = ['Ribose Inc.']
   s.email         = ['open.source@ribose.com']
 
